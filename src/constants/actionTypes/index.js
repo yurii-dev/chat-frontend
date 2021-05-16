@@ -15,3 +15,7 @@ export const LOGOUT_USER = "LOGOUT_USER";
 export const GET_ME_LOADING = "GET_ME_LOADING";
 export const GET_ME_SUCCESS = "GET_ME_SUCCESS";
 export const GET_ME_ERROR = "GET_ME_ERROR";
+
+export const MESSAGES_LOADING = "MESSAGES_LOADING";
+export const MESSAGES_SUCCESS = "MESSAGES_SUCCESS";
+export const MESSAGES_ERROR = "MESSAGES_ERROR";

@@ -5,11 +5,7 @@ function ConversationList({ dialogState, meState }) {
   console.log(dialogState, meState);
   const { dialog } = dialogState;
   const { me } = meState;
-  // if (data?.dialogs) {
-  //   const ConversationItems = data.dialogs.map((dialog) => {
-  //     return <ConversationItem />;
-  //   });
-  // }
+
   return (
     <div id="conversation-list">
       {dialog.data &&
