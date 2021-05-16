@@ -1,13 +1,13 @@
 import React from "react";
 
 import "./ConversationItem.scss";
-const ConversationItem = () => {
+const ConversationItem = ({ data: { user, textMessage, date, active } }) => {
   return (
-    <div className="conversation active">
-      <img src="" />
-      <div className="title-text">asdasd</div>
-      <div className="created-date"></div>
-      <div className="conversation-message">adasdasd</div>
+    <div className={`conversation ${active ? "active" : ""}`}>
+      <img src={user.avatar} />
+      <div className="title-text">{user.username}</div>
+      <div className="created-date">{new Date(date).toLocaleDateString()}</div>
+      <div className="conversation-message">{textMessage}</div>
     </div>
   );
 };

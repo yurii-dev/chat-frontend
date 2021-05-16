@@ -1,5 +1,5 @@
 export default {
-  dialog: {
+  me: {
     loading: true,
     data: null,
     error: null,

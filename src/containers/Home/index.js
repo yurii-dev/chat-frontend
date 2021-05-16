@@ -2,20 +2,23 @@ import React, { useContext, useEffect } from "react";
 import { useHistory } from "react-router";
 import Header from "../../components/Header";
 import getDialogs from "../../context/actions/home/dialogs/getDialogs";
+import getMe from "../../context/actions/home/getMe";
 import { GlobalContext } from "../../context/Provider";
 import HomeUI from "../../layout/Home";
 
 function HomeContainer() {
-  const { dialogDispatch, dialogState } = useContext(GlobalContext);
+  const { dialogDispatch, dialogState, meState, meDispatch } =
+    useContext(GlobalContext);
   const history = useHistory();
 
   useEffect(() => {
     getDialogs(history)(dialogDispatch);
+    getMe(history)(meDispatch);
   }, []);
   return (
     <>
       <Header />
-      <HomeUI state={dialogState} />
+      <HomeUI {...{ dialogState, meState }} />
     </>
   );
 }

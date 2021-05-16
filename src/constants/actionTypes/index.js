@@ -11,3 +11,7 @@ export const DIALOG_LOAD_SUCCESS = "DIALOG_LOAD_SUCCESS";
 export const DIALOG_LOAD_ERROR = "DIALOG_LOAD_ERROR";
 
 export const LOGOUT_USER = "LOGOUT_USER";
+
+export const GET_ME_LOADING = "GET_ME_LOADING";
+export const GET_ME_SUCCESS = "GET_ME_SUCCESS";
+export const GET_ME_ERROR = "GET_ME_ERROR";

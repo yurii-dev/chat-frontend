@@ -8,12 +8,12 @@ import NewConversation from "../../components/conversation/New-Conversation";
 
 import "./Home.scss";
 
-function HomeUI(props) {
+function HomeUI({ dialogState, meState }) {
   return (
     <>
       <div id="chat-container">
         <ConversationSearch />
-        <ConversationList {...props} />
+        <ConversationList {...{ dialogState, meState }} />
         <NewConversation />
         <ChatTitle />
         <MessageList />
