@@ -7,8 +7,14 @@ import { GlobalContext } from "../../context/Provider";
 import HomeUI from "../../layout/Home";
 
 function HomeContainer() {
-  const { dialogDispatch, dialogState, meState, meDispatch } =
-    useContext(GlobalContext);
+  const {
+    dialogDispatch,
+    dialogState,
+    meState,
+    meDispatch,
+    listUsersState,
+    listUsersDispatch,
+  } = useContext(GlobalContext);
   const history = useHistory();
 
   useEffect(() => {
@@ -18,7 +24,9 @@ function HomeContainer() {
   return (
     <>
       <Header />
-      <HomeUI {...{ dialogState, meState }} />
+      <HomeUI
+        {...{ dialogState, meState, listUsersState, listUsersDispatch }}
+      />
     </>
   );
 }

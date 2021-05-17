@@ -19,7 +19,7 @@ function ConversationList({ dialogState, meState }) {
             active: null,
           };
           // --- check owner dialog ---
-          if (dialog.author.id === me.data.user.id) {
+          if (dialog.author._id === me.data.user.id) {
             data.user = dialog.partner;
           } else {
             data.user = dialog.author;
