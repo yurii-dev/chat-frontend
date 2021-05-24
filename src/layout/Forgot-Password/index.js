@@ -1,28 +1,26 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {
-  Form,
-  Button,
-  Grid,
-  Header as SemanticHeader,
-  Segment,
-  Message,
-} from "semantic-ui-react";
+import { Button, Form, Grid, Segment } from "semantic-ui-react";
 import Header from "../../components/Header";
 
-function LoginUI({
+function ForgotPasswordUI({
   form: { onChange, form, error, loginFormValid, onSubmit, loading },
 }) {
   return (
     <div>
       <Header />
-
       <Grid centered>
-        <Grid.Column style={{ maxWidth: 550, marginTop: 25 }}>
-          <SemanticHeader>Login</SemanticHeader>
+        <Grid.Column
+          style={{ maxWidth: 600, marginTop: 25, textAlign: "center" }}
+        >
           <Segment>
             <Form>
-              {error && <Message content={error?.message} negative />}
+              <p style={{ fontSize: 24 }}>Forgot Password</p>
+              <p style={{ fontSize: 16 }}>
+                An email has been sent to your mail with a link to confirm your
+                account
+              </p>
+              <p style={{ fontSize: 16 }}>Already confirmed?</p>
               <Form.Field>
                 <Form.Input
                   value={form.email || ""}
@@ -33,16 +31,6 @@ function LoginUI({
                   label="E-Mail"
                 />
               </Form.Field>
-              <Form.Field>
-                <Form.Input
-                  value={form.password || ""}
-                  onChange={onChange}
-                  name="password"
-                  type="password"
-                  placeholder="Password"
-                  label="Password"
-                />
-              </Form.Field>
               <Button
                 onClick={onSubmit}
                 disabled={loginFormValid || loading}
@@ -51,12 +39,10 @@ function LoginUI({
                 primary
                 type="submit"
               >
-                Submit
+                Send
               </Button>
-              <Segment>
-                Need an account <Link to="/register">Register</Link>
-              </Segment>
-              <Link to="/forgotpassword"> Forgot your password</Link>
+
+              <Link to="/login">Login</Link>
             </Form>
           </Segment>
         </Grid.Column>
@@ -65,4 +51,4 @@ function LoginUI({
   );
 }
 
-export default LoginUI;
+export default ForgotPasswordUI;

@@ -1,39 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {
-  Form,
-  Button,
-  Grid,
-  Header as SemanticHeader,
-  Segment,
-  Message,
-} from "semantic-ui-react";
+import { Button, Form, Grid, Segment } from "semantic-ui-react";
 import Header from "../../components/Header";
 
-function LoginUI({
+function SetPasswordUI({
   form: { onChange, form, error, loginFormValid, onSubmit, loading },
 }) {
   return (
     <div>
       <Header />
-
       <Grid centered>
-        <Grid.Column style={{ maxWidth: 550, marginTop: 25 }}>
-          <SemanticHeader>Login</SemanticHeader>
+        <Grid.Column
+          style={{ maxWidth: 600, marginTop: 25, textAlign: "center" }}
+        >
           <Segment>
             <Form>
-              {error && <Message content={error?.message} negative />}
-              <Form.Field>
-                <Form.Input
-                  value={form.email || ""}
-                  onChange={onChange}
-                  name="email"
-                  type="email"
-                  placeholder="E-Mail"
-                  label="E-Mail"
-                />
-              </Form.Field>
-              <Form.Field>
+              <p style={{ fontSize: 24 }}>Set Password</p>
+              <p style={{ fontSize: 16 }}>Please type your new password</p>
+              <Form.Field style={{ textAlign: "left" }}>
                 <Form.Input
                   value={form.password || ""}
                   onChange={onChange}
@@ -41,6 +25,16 @@ function LoginUI({
                   type="password"
                   placeholder="Password"
                   label="Password"
+                />
+              </Form.Field>
+              <Form.Field style={{ textAlign: "left" }}>
+                <Form.Input
+                  value={form.repeatPassword || ""}
+                  onChange={onChange}
+                  name="repeatPassword"
+                  type="password"
+                  placeholder="Repeat a password"
+                  label="Repeat a password"
                 />
               </Form.Field>
               <Button
@@ -51,12 +45,10 @@ function LoginUI({
                 primary
                 type="submit"
               >
-                Submit
+                Send
               </Button>
-              <Segment>
-                Need an account <Link to="/register">Register</Link>
-              </Segment>
-              <Link to="/forgotpassword"> Forgot your password</Link>
+
+              <Link to="/login">Login</Link>
             </Form>
           </Segment>
         </Grid.Column>
@@ -65,4 +57,4 @@ function LoginUI({
   );
 }
 
-export default LoginUI;
+export default SetPasswordUI;
