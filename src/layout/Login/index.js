@@ -43,7 +43,6 @@ function LoginUI({
                   label="Password"
                 />
               </Form.Field>
-
               <Button
                 onClick={onSubmit}
                 disabled={loginFormValid || loading}
@@ -57,6 +56,7 @@ function LoginUI({
               <Segment>
                 Need an account <Link to="/register">Register</Link>
               </Segment>
+              <Link to="/forgotpassword"> Forgot your password</Link>
             </Form>
           </Segment>
         </Grid.Column>
