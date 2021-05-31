@@ -1,7 +1,7 @@
 export default {
     createDialog: {
       loading: true,
-      data: null,
+      data: false,
       error: null,
     },
   };

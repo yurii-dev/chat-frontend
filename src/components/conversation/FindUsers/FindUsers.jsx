@@ -3,7 +3,7 @@ import "./FindUsers.scss";
 
 const FindUsers = ({
   listUsers,
-  setUserName,
+  setUser,
   setEmptyMessage,
   setShowMessage,
 }) => {
@@ -11,7 +11,7 @@ const FindUsers = ({
     <div
       className="conversation"
       onClick={() => {
-        setUserName(listUsers.username);
+        setUser(listUsers);
         setEmptyMessage(true);
         setShowMessage(true);
       }}

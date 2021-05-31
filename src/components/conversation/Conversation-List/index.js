@@ -8,7 +8,7 @@ function ConversationList({
   showDialogs,
   listUsersState,
   setShowMessage,
-  setUserName,
+  setUser,
   messageDispatch,
   setEmptyMessage,
 }) {
@@ -55,7 +55,7 @@ function ConversationList({
                 {...{
                   data,
                   setShowMessage,
-                  setUserName,
+                  setUser,
                   messageDispatch,
                   setEmptyMessage,
                 }}
@@ -68,7 +68,7 @@ function ConversationList({
               <FindUsers
                 listUsers={l}
                 {...{
-                  setUserName,
+                  setUser,
                   setEmptyMessage,
                   setShowMessage,
                 }}

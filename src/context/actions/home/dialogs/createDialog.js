@@ -11,11 +11,10 @@ export default (data) => (dispatch) => {
     type: CREATE_DIALOGS_LOADING,
   });
   axiosInstance()
-    .post("/dialogs", {data})
+    .post("/dialogs", { ...data })
     .then((res) => {
       dispatch({
         type: CREATE_DIALOGS_SUCCESS,
-        payload: res.data,
       });
     })
     .catch((err) => {

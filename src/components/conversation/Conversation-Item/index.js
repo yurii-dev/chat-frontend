@@ -5,7 +5,7 @@ import "./ConversationItem.scss";
 const ConversationItem = ({
   data: { user, textMessage, date, active, id },
   setShowMessage,
-  setUserName,
+  setUser,
   messageDispatch,
   setEmptyMessage,
 }) => {
@@ -14,7 +14,7 @@ const ConversationItem = ({
       className={`conversation ${active ? "active" : ""}`}
       onClick={() => {
         setShowMessage(true);
-        setUserName(user.username);
+        setUser(user);
         getMessages(id)(messageDispatch);
         setEmptyMessage(false);
       }}

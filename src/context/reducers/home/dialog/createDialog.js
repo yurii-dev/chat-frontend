@@ -12,6 +12,7 @@ import {
           createDialog: {
             ...state.createDialog,
             loading: true,
+            data: false,
           },
         };
       }
@@ -21,7 +22,7 @@ import {
           createDialog: {
             ...state.createDialog,
             loading: false,
-            data: payload,
+            data: true,
           },
         };
       }

@@ -22,8 +22,8 @@ function HomeUI({
   const [showDialogs, setShowDialogs] = React.useState(true);
   // --- show message ---
   const [showMessage, setShowMessage] = React.useState(false);
-  // --- get user name ------
-  const [userName, setUserName] = React.useState(null);
+  // --- get user  ------
+  const [user, setUser] = React.useState(null);
   // --- empty message -------
   const [emptyMessage, setEmptyMessage] = React.useState(false);
   // --- find user name ---
@@ -38,7 +38,7 @@ function HomeUI({
             listUsersState,
             showDialogs,
             setShowMessage,
-            setUserName,
+            setUser,
             messageDispatch,
             setEmptyMessage,
           }}
@@ -52,13 +52,13 @@ function HomeUI({
         />
         {showMessage ? (
           <>
-            <ChatTitle {...{ userName }} />
+            <ChatTitle {...{ user }} />
             {emptyMessage ? (
               <div className="empty-message"></div>
             ) : (
               <MessageList {...{ messageState, meState }} />
             )}
-            <ChatForm {...{ createDialogDispatch }} />
+            <ChatForm {...{ createDialogDispatch, user, setShowDialogs, setShowMessage, createDialogState }} />
           </>
         ) : (
           <div className="no-message"></div>
