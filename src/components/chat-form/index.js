@@ -1,6 +1,6 @@
 import React from "react";
 import "./ChatForm.scss";
-function ChatForm() {
+function ChatForm({ createDialogDispatch }) {
   return (
     <form id="chat-form">
       <div title="Add Attachment"></div>

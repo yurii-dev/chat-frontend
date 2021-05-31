@@ -1,10 +1,10 @@
 import React from "react";
 
 import "./ChatTitle.scss";
-function ChatTitle() {
+function ChatTitle({ userName }) {
   return (
     <div id="chat-title">
-      <span>Yurii PRodamn</span>
+      <span>{userName}</span>
     </div>
   );
 }

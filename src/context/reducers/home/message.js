@@ -9,8 +9,8 @@ const message = (state, { payload, type }) => {
     case MESSAGES_LOADING: {
       return {
         ...state,
-        me: {
-          ...state.me,
+        message: {
+          ...state.message,
           loading: true,
         },
       };
@@ -18,8 +18,8 @@ const message = (state, { payload, type }) => {
     case MESSAGES_SUCCESS: {
       return {
         ...state,
-        me: {
-          ...state.me,
+        message: {
+          ...state.message,
           loading: false,
           data: payload,
         },
@@ -28,8 +28,8 @@ const message = (state, { payload, type }) => {
     case MESSAGES_ERROR: {
       return {
         ...state,
-        me: {
-          ...state.me,
+        message: {
+          ...state.message,
           loading: false,
           error: payload,
         },

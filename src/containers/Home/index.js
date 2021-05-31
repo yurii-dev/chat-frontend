@@ -14,6 +14,10 @@ function HomeContainer() {
     meDispatch,
     listUsersState,
     listUsersDispatch,
+    messageState,
+    messageDispatch,
+    createDialogState,
+    createDialogDispatch,
   } = useContext(GlobalContext);
   const history = useHistory();
 
@@ -25,7 +29,16 @@ function HomeContainer() {
     <>
       <Header />
       <HomeUI
-        {...{ dialogState, meState, listUsersState, listUsersDispatch }}
+        {...{
+          dialogState,
+          meState,
+          listUsersState,
+          listUsersDispatch,
+          messageState,
+          messageDispatch,
+          createDialogState,
+          createDialogDispatch,
+        }}
       />
     </>
   );

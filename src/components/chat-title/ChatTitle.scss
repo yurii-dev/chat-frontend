@@ -7,7 +7,7 @@ $chat-title-shadow: darken($accent-color, 75.29);
   grid: 36px / 1fr 36px;
   align-content: center;
   align-items: center;
-  grid-area: chat-title;
+  grid-area: chat-title / chat-message-list;
   background: $accent-color;
   color: $primary-color;
   font-weight: bold;

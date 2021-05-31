@@ -4,11 +4,13 @@ import dialogInitialState from "./initialstates/home/dialog/dialogInitialState";
 import meInitialState from "./initialstates/home/meInitialState";
 import messageInitialState from "./initialstates/home/messageInitialSatate";
 import listUsersInitialState from "./initialstates/home/listUsersInitialState";
+import createDialogInitialState from "./initialstates/home/dialog/createDialogInitialState";
 import auth from "./reducers/auth";
 import dialog from "./reducers/home/dialog/dialog";
 import me from "./reducers/home/me";
 import message from "./reducers/home/message";
 import listUsers from "./reducers/home/listUsers";
+import createDialog from "./reducers/home/dialog/createDialog";
 
 export const GlobalContext = createContext({});
 
@@ -24,6 +26,10 @@ export const GlobalProvider = ({ children }) => {
     listUsers,
     listUsersInitialState
   );
+  const [createDialogState, createDialogDispatch] = useReducer(
+    createDialog,
+    createDialogInitialState
+  );
 
   return (
     <GlobalContext.Provider
@@ -38,6 +44,8 @@ export const GlobalProvider = ({ children }) => {
         messageDispatch,
         listUsersState,
         listUsersDispatch,
+        createDialogState,
+        createDialogDispatch,
       }}
     >
       {children}

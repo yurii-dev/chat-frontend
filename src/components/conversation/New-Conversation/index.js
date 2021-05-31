@@ -1,9 +1,14 @@
 import React from "react";
 import getUsers from "../../../context/actions/home/listUsers";
+import icon from "../../../images/back-arrow.png";
 
 import "./NewConversation.scss";
 
-const NewConversation = ({ listUsersDispatch }) => {
+const NewConversation = ({
+  listUsersDispatch,
+  setShowDialogs,
+  showDialogs,
+}) => {
   // --- state for input ---
   const [show, setShow] = React.useState(false);
   // --- state for input values ---
@@ -12,6 +17,8 @@ const NewConversation = ({ listUsersDispatch }) => {
   const findUsers = (event) => {
     if (event.keyCode === 13) {
       getUsers(value)(listUsersDispatch);
+      setShowDialogs(false);
+      setValue("");
     }
   };
   return (
@@ -25,7 +32,19 @@ const NewConversation = ({ listUsersDispatch }) => {
           placeholder="Type name"
         />
       )}
-      <button onClick={() => setShow(!show)}>+</button>
+      {showDialogs ? (
+        <button onClick={() => setShow(!show)}>+</button>
+      ) : (
+        <img
+          onClick={() => {
+            setShowDialogs(true);
+            setShow(false);
+          }}
+          className="back-icon"
+          src={icon}
+          alt="icon"
+        />
+      )}
     </div>
   );
 };
