@@ -6,14 +6,14 @@ import {
 import axiosInstance from "../../../helpers/axiosInstance";
 
 export const setPassword =
-  ({ password }) =>
+  (password, { token }) =>
   (dispatch) => {
     dispatch({
       type: SET_PASSWORD_LOADING,
     });
     console.log(password);
     axiosInstance()
-      .post("/users/forgotpassword", { password })
+      .post("/users/forgotpassword", { password, token })
       .then((res) => {
         dispatch({
           type: SET_PASSWORD_SUCCESS,

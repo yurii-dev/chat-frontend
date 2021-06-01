@@ -18,9 +18,7 @@ export default () => {
   useEffect(() => {
     if (error) {
       for (const item in error) {
-        console.log(item, error[item]);
         setFieldErrors({ ...fieldErrors, [item]: error[item] });
-        console.log(fieldErrors);
       }
     }
   }, [error]);

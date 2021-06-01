@@ -4,7 +4,7 @@ import { Button, Form, Grid, Segment } from "semantic-ui-react";
 import Header from "../../components/Header";
 
 function SetPasswordUI({
-  form: { onChange, form, error, loginFormValid, onSubmit, loading },
+  form: { onChange, form, fieldErrors, loginFormValid, onSubmit, loading },
 }) {
   return (
     <div>
@@ -15,16 +15,24 @@ function SetPasswordUI({
         >
           <Segment>
             <Form>
-              <p style={{ fontSize: 24 }}>Set Password</p>
-              <p style={{ fontSize: 16 }}>Please type your new password</p>
+              <p style={{ fontSize: 24, textAlign: "center" }}>New Password</p>
+              <p style={{ fontSize: 16 }}>
+                Please create a new password that you don't use an any other
+                site.
+              </p>
               <Form.Field style={{ textAlign: "left" }}>
                 <Form.Input
                   value={form.password || ""}
                   onChange={onChange}
                   name="password"
                   type="password"
-                  placeholder="Password"
-                  label="Password"
+                  placeholder="Create new password"
+                  error={
+                    fieldErrors.password && {
+                      content: fieldErrors.password,
+                      pointing: "below",
+                    }
+                  }
                 />
               </Form.Field>
               <Form.Field style={{ textAlign: "left" }}>
@@ -33,8 +41,7 @@ function SetPasswordUI({
                   onChange={onChange}
                   name="repeatPassword"
                   type="password"
-                  placeholder="Repeat a password"
-                  label="Repeat a password"
+                  placeholder="Confirm your password"
                 />
               </Form.Field>
               <Button
@@ -44,11 +51,14 @@ function SetPasswordUI({
                 loading={loading}
                 primary
                 type="submit"
+                style={{ fontSize: 16 }}
               >
-                Send
+                Change
               </Button>
 
-              <Link to="/login">Login</Link>
+              <div style={{ fontSize: 16, textAlign: "center", marginTop: 12 }}>
+                <Link to="/login">Back to login</Link>
+              </div>
             </Form>
           </Segment>
         </Grid.Column>

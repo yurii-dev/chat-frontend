@@ -4,31 +4,36 @@ import { Button, Form, Grid, Segment } from "semantic-ui-react";
 import Header from "../../components/Header";
 
 function ForgotPasswordUI({
-  form: { onChange, form, error, loginFormValid, onSubmit, loading },
+  form: { onChange, form, loginFormValid, onSubmit, loading, fieldErrors },
 }) {
   return (
     <div>
       <Header />
       <Grid centered>
-        <Grid.Column
-          style={{ maxWidth: 600, marginTop: 25, textAlign: "center" }}
-        >
+        <Grid.Column style={{ maxWidth: 600, marginTop: 25 }}>
           <Segment>
             <Form>
-              <p style={{ fontSize: 24 }}>Forgot Password</p>
-              <p style={{ fontSize: 16 }}>
-                An email has been sent to your mail with a link to confirm your
-                account
+              <p style={{ fontSize: 24, textAlign: "center" }}>
+                Forgot Password?
               </p>
-              <p style={{ fontSize: 16 }}>Already confirmed?</p>
+              <p style={{ fontSize: 16 }}>
+                Enter your email and we'll send you instructions on how to reset
+                your password.
+              </p>
+
               <Form.Field>
                 <Form.Input
                   value={form.email || ""}
                   onChange={onChange}
                   name="email"
                   type="email"
-                  placeholder="E-Mail"
-                  label="E-Mail"
+                  placeholder="EMail"
+                  error={
+                    fieldErrors.email && {
+                      content: fieldErrors.email,
+                      pointing: "below",
+                    }
+                  }
                 />
               </Form.Field>
               <Button
@@ -38,11 +43,13 @@ function ForgotPasswordUI({
                 loading={loading}
                 primary
                 type="submit"
+                style={{ fontSize: 16 }}
               >
-                Send
+                Send me reset instructions
               </Button>
-
-              <Link to="/login">Login</Link>
+              <div style={{ fontSize: 16, textAlign: "center", marginTop: 12 }}>
+                <Link to="/login">Back to login</Link>
+              </div>
             </Form>
           </Segment>
         </Grid.Column>
