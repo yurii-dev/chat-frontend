@@ -33,12 +33,14 @@ function ConversationList({
             // --- check owner dialog ---
             if (dialog.author._id === me.data.user.id) {
               data.user = dialog.partner;
+              data.date = dialog.partner.last_seen;
             } else {
               data.user = dialog.author;
+              data.date = dialog.author.last_seen;
             }
             // --- add last message data -------
             data.textMessage = dialog.lastMessage.text;
-            data.date = dialog.lastMessage.createdAt;
+            // data.date = dialog.lastMessage.createdAt;
             data.id = dialog._id;
             // --- check new message ----
             if (me.data.user.id === dialog.lastMessage.user) {

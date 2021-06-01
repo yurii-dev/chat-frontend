@@ -1,5 +1,6 @@
 import React from "react";
 import getMessages from "../../../context/actions/home/getMessages";
+import ReactTimeAgo from "react-time-ago";
 
 import "./ConversationItem.scss";
 const ConversationItem = ({
@@ -9,6 +10,8 @@ const ConversationItem = ({
   messageDispatch,
   setEmptyMessage,
 }) => {
+  let online = new Date().getTime() - new Date(date).getTime() < 1000 * 60 * 5;
+
   return (
     <div
       className={`conversation ${active ? "active" : ""}`}
@@ -21,7 +24,16 @@ const ConversationItem = ({
     >
       <img src={user.avatar} />
       <div className="title-text">{user.username}</div>
-      <div className="created-date">{new Date(date).toLocaleDateString()}</div>
+      {online ? (
+        <div className="created-date">
+          <span class="dot"></span>
+        </div>
+      ) : (
+        <div className="created-date">
+          <ReactTimeAgo date={date} locale="en" />
+        </div>
+      )}
+
       <div className="conversation-message">{textMessage}</div>
     </div>
   );
