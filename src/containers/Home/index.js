@@ -22,7 +22,7 @@ function HomeContainer() {
   const history = useHistory();
 
   useEffect(() => {
-    getDialogs(history)(dialogDispatch);
+    getDialogs()(dialogDispatch);
     getMe(history)(meDispatch);
   }, []);
   return (
@@ -38,6 +38,7 @@ function HomeContainer() {
           messageDispatch,
           createDialogState,
           createDialogDispatch,
+          dialogDispatch,
         }}
       />
     </>

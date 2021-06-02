@@ -16,7 +16,7 @@ export const register = ({ email, username, password }) => (dispatch) => {
     .then((res) =>
       dispatch({
         type: REGISTER_SUCCESS,
-        payload: res.data,
+        payload: {verify: true},
       })
     )
     .catch((err) => {

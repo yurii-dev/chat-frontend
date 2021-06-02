@@ -1,12 +1,17 @@
 import React from "react";
 import "./ChatForm.scss";
 import createDialogRequest from "../../context/actions/home/dialogs/createDialog";
+import getMessages from "../../context/actions/home/getMessages";
 
 function ChatForm({
   createDialogDispatch,
   user,
   setShowDialogs,
   createDialogState,
+  dialogDispatch,
+  messageDispatch,
+  dialogState,
+  setEmptyMessage
 }) {
   // --- get createDialog ---
   const { createDialog } = createDialogState;
@@ -17,20 +22,38 @@ function ChatForm({
   const sendMessage = (e) => {
     e.preventDefault();
     createDialogRequest({
-      dialog: {
-        partnerId: user.id,
-        text: value,
-        attachments: null,
+      data: {
+        dialog: {
+          partnerId: user.id,
+          text: value,
+          attachments: null,
+        },
       },
+      dialogDispatch,
     })(createDialogDispatch);
+    setValue("");
   };
 
   // --- check data ---
   React.useEffect(() => {
-    if (createDialog.data === true) {
+    if (
+      createDialog.data === true &&
+      user &&
+      dialogState.dialog.data !== null &&
+      dialogState.dialog.data.dialogs
+    ) {
+      const dialogID = dialogState.dialog.data.dialogs.filter(
+        (d) => user.username == d.partner.username
+      );
       setShowDialogs(true);
+      // setShowMessage(true);
+      setEmptyMessage(false);
+      if (dialogID.length > 0) {
+        getMessages(dialogID[0]._id)(messageDispatch);
+      }
     }
-  }, [createDialog]);
+  }, [createDialog, dialogState.dialog.data]);
+
   return (
     <form id="chat-form">
       <div title="Add Attachment"></div>

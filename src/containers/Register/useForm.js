@@ -24,7 +24,7 @@ export default () => {
   }, [error]);
 
   useEffect(() => {
-    if (data) {
+    if (data && data.verify) {
       history.push("/verify");
     }
   }, [data]);

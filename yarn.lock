@@ -6899,7 +6899,7 @@ istanbul-reports@^3.0.2:
     html-escaper "^2.0.0"
     istanbul-lib-report "^3.0.0"
 
-javascript-time-ago@^2.3.3:
+javascript-time-ago@^2.3.3, javascript-time-ago@^2.3.6:
   version "2.3.6"
   resolved "https://registry.yarnpkg.com/javascript-time-ago/-/javascript-time-ago-2.3.6.tgz#a78fd16b214c6b8d91e0f2cc0955648eecd92a7a"
   integrity sha512-OZLtmx+o+LyfLLi7oKsz7taNCx2uguf1qsdN3KCYDe89L7D1OT1BcR/E0HgK5EYqvXxpPEl0oiuypFC7ugyeJA==

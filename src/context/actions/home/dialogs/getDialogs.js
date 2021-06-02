@@ -6,11 +6,11 @@ import {
 import { CONNECTION_ERROR } from "../../../../constants/api";
 import axiosInstance from "../../../../helpers/axiosInstance";
 
-export default (history) => (dispatch) => {
+export default () => (dispatch) => {
   dispatch({
     type: DIALOG_LOADING,
   });
-  axiosInstance(history)
+  axiosInstance()
     .get("/dialogs")
     .then((res) => {
       dispatch({
