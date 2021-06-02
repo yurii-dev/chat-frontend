@@ -1,7 +1,5 @@
-#chat-message-list {
+.chat-message-list {
   grid-area: chat-message-list;
-  display: flex;
-  flex-direction: column-reverse;
-  padding: 0 20px;
+  padding: 0 4px;
   overflow-y: scroll;
 }

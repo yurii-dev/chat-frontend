@@ -36,7 +36,7 @@ function ChatForm({
       <div title="Add Attachment"></div>
       <input
         type="text"
-        placeholder="type a message"
+        placeholder="Type a message"
         value={value}
         onChange={(e) => setValue(e.target.value)}
         onKeyDown={(e) => {

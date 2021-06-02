@@ -1,13 +1,24 @@
 import React from "react";
+import ReactTimeAgo from "react-time-ago";
 
 import "./Message.scss";
-function Message({ isMe, text, date }) {
+function Message({ isMe, text, date, avatar }) {
   return (
     <div className={`message-row ${isMe ? "you" : "other"}-message`}>
       <div className="message-content">
-        <div className="message-text">{text}</div>
+        <div className="message-text">
+          {text}
+          <span className="message-date-hours">
+            {new Date(date).toLocaleTimeString()}
+          </span>
+        </div>
         <div className="message-time">
-          {new Date(date).toLocaleDateString()}
+          <ReactTimeAgo
+            date={date}
+            locale="en"
+            style={{ fontSize: 14 }}
+            timeStyle="round-minute"
+          />
         </div>
       </div>
     </div>
