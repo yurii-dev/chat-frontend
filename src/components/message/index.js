@@ -6,6 +6,7 @@ function Message({ isMe, text, date, avatar }) {
   return (
     <div className={`message-row ${isMe ? "you" : "other"}-message`}>
       <div className="message-content">
+        {!isMe && <img className="message-image" src={avatar}></img>}
         <div className="message-text">
           {text}
           <span className="message-date-hours">

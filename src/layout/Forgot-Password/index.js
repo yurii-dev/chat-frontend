@@ -1,6 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button, Form, Grid, Segment } from "semantic-ui-react";
+import {
+  Button,
+  Form,
+  Grid,
+  Segment,
+  Header as SemanticHeader,
+} from "semantic-ui-react";
 import Header from "../../components/Header";
 
 function ForgotPasswordUI({
@@ -9,14 +15,16 @@ function ForgotPasswordUI({
   return (
     <div>
       <Header />
+
       <Grid centered>
-        <Grid.Column style={{ maxWidth: 600, marginTop: 25 }}>
+        <Grid.Column style={{ maxWidth: 550, marginTop: 25 }}>
+          <SemanticHeader>Forgot Password?</SemanticHeader>
           <Segment>
             <Form>
-              <p style={{ fontSize: 24, textAlign: "center" }}>
+              {/* <p style={{ fontSize: 18, textAlign: "center" }}>
                 Forgot Password?
-              </p>
-              <p style={{ fontSize: 16 }}>
+              </p> */}
+              <p style={{ fontSize: 14 }}>
                 Enter your email and we'll send you instructions on how to reset
                 your password.
               </p>
@@ -27,7 +35,8 @@ function ForgotPasswordUI({
                   onChange={onChange}
                   name="email"
                   type="email"
-                  placeholder="EMail"
+                  placeholder="E-Mail"
+                  label="E-Mail"
                   error={
                     fieldErrors.email && {
                       content: fieldErrors.email,
@@ -47,7 +56,7 @@ function ForgotPasswordUI({
               >
                 Send me reset instructions
               </Button>
-              <div style={{ fontSize: 16, textAlign: "center", marginTop: 12 }}>
+              <div style={{ fontSize: 14, textAlign: "center", marginTop: 12 }}>
                 <Link to="/login">Back to login</Link>
               </div>
             </Form>

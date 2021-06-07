@@ -1,6 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button, Form, Grid, Segment } from "semantic-ui-react";
+import {
+  Button,
+  Form,
+  Grid,
+  Segment,
+  Header as SemanticHeader,
+} from "semantic-ui-react";
 import Header from "../../components/Header";
 
 function SetPasswordUI({
@@ -10,13 +16,11 @@ function SetPasswordUI({
     <div>
       <Header />
       <Grid centered>
-        <Grid.Column
-          style={{ maxWidth: 600, marginTop: 25, textAlign: "center" }}
-        >
+        <Grid.Column style={{ maxWidth: 550, marginTop: 25 }}>
+          <SemanticHeader>New Password</SemanticHeader>
           <Segment>
             <Form>
-              <p style={{ fontSize: 24, textAlign: "center" }}>New Password</p>
-              <p style={{ fontSize: 16 }}>
+              <p style={{ fontSize: 14 }}>
                 Please create a new password that you don't use an any other
                 site.
               </p>
@@ -27,6 +31,7 @@ function SetPasswordUI({
                   name="password"
                   type="password"
                   placeholder="Create new password"
+                  label="Password"
                   error={
                     fieldErrors.password && {
                       content: fieldErrors.password,
@@ -41,6 +46,7 @@ function SetPasswordUI({
                   onChange={onChange}
                   name="repeatPassword"
                   type="password"
+                  label="Confirm Password"
                   placeholder="Confirm your password"
                 />
               </Form.Field>
@@ -51,12 +57,11 @@ function SetPasswordUI({
                 loading={loading}
                 primary
                 type="submit"
-                style={{ fontSize: 16 }}
               >
                 Change
               </Button>
 
-              <div style={{ fontSize: 16, textAlign: "center", marginTop: 12 }}>
+              <div style={{ fontSize: 14, textAlign: "center", marginTop: 12 }}>
                 <Link to="/login">Back to login</Link>
               </div>
             </Form>

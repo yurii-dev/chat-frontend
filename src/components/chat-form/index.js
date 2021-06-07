@@ -11,7 +11,7 @@ function ChatForm({
   dialogDispatch,
   messageDispatch,
   dialogState,
-  setEmptyMessage
+  setEmptyMessage,
 }) {
   // --- get createDialog ---
   const { createDialog } = createDialogState;
@@ -23,8 +23,8 @@ function ChatForm({
     e.preventDefault();
     createDialogRequest({
       data: {
-        dialog: {
-          partnerId: user.id,
+        message: {
+          partnerId: user.id ? user.id : user._id,
           text: value,
           attachments: null,
         },
@@ -43,7 +43,9 @@ function ChatForm({
       dialogState.dialog.data.dialogs
     ) {
       const dialogID = dialogState.dialog.data.dialogs.filter(
-        (d) => user.username == d.partner.username
+        (d) =>
+          user.username == d.partner.username ||
+          user.username == d.author.username
       );
       setShowDialogs(true);
       // setShowMessage(true);
