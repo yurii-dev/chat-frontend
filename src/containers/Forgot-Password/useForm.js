@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import { forgotPassword } from "../../context/actions/auth/forgotPassword";
 import { GlobalContext } from "../../context/Provider";
+import { FORGOT_PASSWORD_SUCCESS } from "../../constants/actionTypes";
 
 export default () => {
   const [form, setForm] = useState({});
@@ -28,6 +29,10 @@ export default () => {
   useEffect(() => {
     if (data) {
       history.push("/login");
+      forgotPasswordDispatch({
+        type: FORGOT_PASSWORD_SUCCESS,
+        payload: null,
+      });
     }
   }, [data]);
 

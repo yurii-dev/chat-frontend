@@ -17,7 +17,7 @@ export default () => {
 
   useEffect(() => {
     if (data) {
-      if (data.user) {
+      if (data.user && localStorage.getItem("token")) {
         history.push("/");
       }
     }

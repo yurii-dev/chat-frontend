@@ -2,6 +2,7 @@ import {
   GET_ME_LOADING,
   GET_ME_SUCCESS,
   GET_ME_ERROR,
+  LOGOUT_USER,
 } from "../../../constants/actionTypes";
 
 const me = (state, { payload, type }) => {
@@ -33,6 +34,12 @@ const me = (state, { payload, type }) => {
           loading: false,
           error: payload,
         },
+      };
+    }
+    case LOGOUT_USER: {
+      return {
+        ...state,
+        me,
       };
     }
     default:

@@ -11,7 +11,6 @@ export const forgotPassword =
     dispatch({
       type: FORGOT_PASSWORD_LOADING,
     });
-    console.log(email);
     axiosInstance()
       .get("/users/forgotpassword", { params: { email } })
       .then((res) => {

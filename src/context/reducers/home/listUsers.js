@@ -2,6 +2,7 @@ import {
   LIST_USERS_LOADING,
   LIST_USERS_SUCCESS,
   LIST_USERS_ERROR,
+  LOGOUT_USER,
 } from "../../../constants/actionTypes";
 
 const listUsers = (state, { payload, type }) => {
@@ -33,6 +34,12 @@ const listUsers = (state, { payload, type }) => {
           loading: false,
           error: payload,
         },
+      };
+    }
+    case LOGOUT_USER: {
+      return {
+        ...state,
+        listUsers,
       };
     }
     default:

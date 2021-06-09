@@ -2,6 +2,7 @@ import {
   MESSAGES_LOADING,
   MESSAGES_SUCCESS,
   MESSAGES_ERROR,
+  LOGOUT_USER,
 } from "../../../constants/actionTypes";
 
 const message = (state, { payload, type }) => {
@@ -33,6 +34,12 @@ const message = (state, { payload, type }) => {
           loading: false,
           error: payload,
         },
+      };
+    }
+    case LOGOUT_USER: {
+      return {
+        ...state,
+        message,
       };
     }
     default:

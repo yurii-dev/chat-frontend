@@ -13,6 +13,7 @@ $chat-form-top-border: darken($accent-color, 12.16);
   border-top: 1px solid $chat-form-top-border;
   padding-left: 42px;
   padding-right: 22px;
+  position: relative;
 
   input {
     flex: 1 0 0;
@@ -25,15 +26,55 @@ $chat-form-top-border: darken($accent-color, 12.16);
     font-size: 1.4rem;
     margin-left: 15px;
   }
+
   input::placeholder {
     font-weight: normal;
     font-size: 18px;
   }
+
   button {
     height: 48px;
     flex: 0 0 90px;
     border-radius: 0 8px 8px 0;
     border: 1px solid #0050bd;
     color: #0050bd;
+  }
+
+  .attachment-icon {
+    margin-left: 10px;
+    cursor: pointer;
+  }
+
+  .attachments-list {
+    position: absolute;
+    top: 12px;
+    left: 70px;
+    display: flex;
+  }
+  
+  .attachment-wrapper {
+    position: relative;
+  }
+
+  .attachment-image {
+    width: 35px;
+    height: 35px;
+    border: 1px solid grey;
+    padding: 8px;
+    border-radius: 50%;
+    margin: 0 5px;
+  }
+
+  .attachment-cross {
+    position: absolute;
+    top: -12px;
+    right: -2px;
+    font-size: 12px;
+    cursor: pointer;
+    padding: 3px;
+    transition: .2s ease-in;
+  }
+  .attachment-cross:hover {
+    transform: scale(1.3);
   }
 }
