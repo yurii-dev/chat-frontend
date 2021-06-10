@@ -38,13 +38,20 @@
     color: $light-grey-border;
     white-space: nowrap;
     font-size: 1rem;
-    .dot {
-      height: 12px;
-      width: 12px;
-      background-color: greenyellow;
-      border-radius: 50%;
-      display: inline-block;
-    }
+  }
+  .dot {
+    height: 12px;
+    width: 12px;
+    background-color: greenyellow;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .unread {
+    background-color: red;
+    height: 10px;
+    width: 10px;
+    float: right;
+    border: 1px outset white;
   }
 
   .conversation-message {

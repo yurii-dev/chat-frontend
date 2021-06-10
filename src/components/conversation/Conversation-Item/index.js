@@ -3,15 +3,10 @@ import getMessages from "../../../context/actions/home/getMessages";
 import ReactTimeAgo from "react-time-ago";
 
 import "./ConversationItem.scss";
-const ConversationItem = ({
-  data: { user, textMessage, date, active, id },
-  setShowMessage,
-  setUser,
-  messageDispatch,
-  setEmptyMessage,
-  checkedUserId,
-}) => {
+const ConversationItem = ({ data: { user, textMessage, date, active, id, lastMessageOwner, lastMessageRead }, setShowMessage, setUser, messageDispatch, setEmptyMessage, checkedUserId, meId }) => {
   let online = new Date().getTime() - new Date(date).getTime() < 1000 * 60 * 5;
+  const isUnread = lastMessageOwner != meId && lastMessageRead == false;
+  const [unread, setUnread] = React.useState(isUnread);
 
   return (
     <div
@@ -21,6 +16,7 @@ const ConversationItem = ({
         setUser(user);
         getMessages(id)(messageDispatch);
         setEmptyMessage(false);
+        setUnread(false);
       }}
     >
       <img src={user.avatar} />
@@ -35,7 +31,10 @@ const ConversationItem = ({
         </div>
       )}
 
-      <div className="conversation-message">{textMessage}</div>
+      <div className="conversation-message">
+        {textMessage}
+        {unread && <span class="dot unread"></span>}
+      </div>
     </div>
   );
 };

@@ -2,17 +2,7 @@ import React, { useContext } from "react";
 import ConversationItem from "../Conversation-Item";
 import "./ConversationList.scss";
 import FindUsers from "../../conversation/FindUsers/FindUsers";
-function ConversationList({
-  dialogState,
-  meState,
-  showDialogs,
-  listUsersState,
-  setShowMessage,
-  setUser,
-  user,
-  messageDispatch,
-  setEmptyMessage,
-}) {
+function ConversationList({ dialogState, meState, showDialogs, listUsersState, setShowMessage, setUser, user, messageDispatch, setEmptyMessage }) {
   const { dialog } = dialogState;
   const { me } = meState;
   const { listUsers } = listUsersState;
@@ -30,6 +20,8 @@ function ConversationList({
               date: null,
               active: null,
               id: null,
+              lastMessageOwner: null,
+              lastMessageRead: null,
             };
             // --- check owner dialog ---
             if (dialog.author._id === me.data.user.id) {
@@ -41,6 +33,8 @@ function ConversationList({
             }
             // --- add last message data -------
             data.textMessage = dialog.lastMessage.text;
+            data.lastMessageOwner = dialog.lastMessage.user;
+            data.lastMessageRead = dialog.lastMessage.read;
             // data.date = dialog.lastMessage.createdAt;
             data.id = dialog._id;
             // --- check new message ----
@@ -63,6 +57,7 @@ function ConversationList({
                   messageDispatch,
                   setEmptyMessage,
                 }}
+                meId={me.data.user.id}
               />
             );
           })
