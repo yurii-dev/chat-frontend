@@ -72,13 +72,41 @@ function ChatForm({
         if (file && reader) {
           reader.readAsDataURL(file);
           reader.onload = function () {
-            setAttachState(reader.result);
+            const arr = [...attachState];
+            if (arr.includes(reader.result)) {
+              return;
+            } else {
+              arr.push(reader.result);
+            }
+            console.log(arr);
+            setAttachState(arr);
           };
         }
       } else {
         return alert("File not supported!");
       }
     }
+  };
+
+  // --- remove attachment ---
+  const deleteAttachment = (img) => {
+    const arr = [...attachState];
+    const seekItem = attachState.indexOf(img);
+    if (seekItem !== -1) {
+      if (arr.length === 1) {
+        setAttachState([]);
+      } else {
+        arr.splice(seekItem, 1);
+        setAttachState(arr);
+      }
+    } else {
+      return;
+    }
+  };
+
+  // --- change input ---
+  const onChnage = (e) => {
+    attachState.length <= 0 && setValue(e.target.value);
   };
 
   return (
@@ -88,7 +116,7 @@ function ChatForm({
         type="text"
         placeholder={attachState.length > 0 ? "" : "Type a message"}
         value={value}
-        onChange={(e) => setValue(e.target.value)}
+        onChange={onChnage}
         onKeyDown={(e) => {
           if (e.key === "Enter") {
             sendMessage(e);
@@ -97,11 +125,16 @@ function ChatForm({
       />
       <div className="attachments-list">
         {attachState.length > 0 &&
-          [attachState].map((i) => {
+          attachState.map((i, index) => {
             return (
-              <div className="attachment-wrapper">
+              <div className="attachment-wrapper" key={index}>
                 <img src={i} className="attachment-image" />
-                <span className="attachment-cross">x</span>
+                <span
+                  className="attachment-cross"
+                  onClick={() => deleteAttachment(i)}
+                >
+                  x
+                </span>
               </div>
             );
           })}

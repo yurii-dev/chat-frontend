@@ -4,12 +4,11 @@ $message-time-color: darken($accent-color, 46.5%);
 $speech-bubble-border-color: darken($accent-color, 13.18);
 
 .message-row {
-  display: grid;
-  grid-template-columns: 70%;
+  display: flex;
   margin-bottom: 10px;
 
   >.message-content {
-    display: flex;
+    display: grid;
     margin: 10px 5px;
     align-items: center;
 
@@ -26,7 +25,7 @@ $speech-bubble-border-color: darken($accent-color, 13.18);
   }
 
   &.you-message {
-    justify-content: end;
+    justify-content: flex-end;
     margin-right: 3px;
 
     >.message-content {
@@ -48,18 +47,19 @@ $speech-bubble-border-color: darken($accent-color, 13.18);
   }
 
   &.other-message {
-    justify-items: start;
+    justify-items: flex-start;
+    align-items: center;
     margin-left: 3px;
-
+    .message-image {
+      border-radius: 100%;
+      width: 35px;
+      height: 35px;
+      margin-right: 5px;
+    }
     >.message-content {
       justify-items: start;
 
-      >.message-image {
-        border-radius: 100%;
-        width: 35px;
-        height: 35px;
-        margin-right: 5px;
-      }
+    
 
       >.message-text {
         background: $accent-color;

@@ -51,7 +51,7 @@ $chat-form-top-border: darken($accent-color, 12.16);
     left: 70px;
     display: flex;
   }
-  
+
   .attachment-wrapper {
     position: relative;
   }
@@ -60,7 +60,7 @@ $chat-form-top-border: darken($accent-color, 12.16);
     width: 35px;
     height: 35px;
     border: 1px solid grey;
-    padding: 8px;
+    padding: 5px;
     border-radius: 50%;
     margin: 0 5px;
   }
@@ -74,6 +74,7 @@ $chat-form-top-border: darken($accent-color, 12.16);
     padding: 3px;
     transition: .2s ease-in;
   }
+
   .attachment-cross:hover {
     transform: scale(1.3);
   }

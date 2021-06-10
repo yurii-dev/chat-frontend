@@ -9,12 +9,13 @@ const ConversationItem = ({
   setUser,
   messageDispatch,
   setEmptyMessage,
+  checkedUserId,
 }) => {
   let online = new Date().getTime() - new Date(date).getTime() < 1000 * 60 * 5;
 
   return (
     <div
-      className={`conversation ${active ? "active" : ""}`}
+      className={`conversation ${checkedUserId === user._id ? "active" : ""}`}
       onClick={() => {
         setShowMessage(true);
         setUser(user);

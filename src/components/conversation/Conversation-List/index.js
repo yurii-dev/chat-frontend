@@ -9,6 +9,7 @@ function ConversationList({
   listUsersState,
   setShowMessage,
   setUser,
+  user,
   messageDispatch,
   setEmptyMessage,
 }) {
@@ -54,6 +55,7 @@ function ConversationList({
             }
             return (
               <ConversationItem
+                checkedUserId={user?._id}
                 {...{
                   data,
                   setShowMessage,

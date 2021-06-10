@@ -30,7 +30,7 @@ function HomeUI({
   return (
     <>
       <div id="chat-container">
-        <ConversationSearch />
+        <ConversationSearch {...{meState}} />
         <ConversationList
           {...{
             dialogState,
@@ -38,6 +38,7 @@ function HomeUI({
             listUsersState,
             showDialogs,
             setShowMessage,
+            user,
             setUser,
             messageDispatch,
             setEmptyMessage,
