@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Form, Grid, Segment } from "semantic-ui-react";
+import { Form, Button, Image, Grid, Header as SemanticHeader, Segment, Message } from "semantic-ui-react";
 import Header from "../../components/Header";
 import { useHistory } from "react-router";
 import { GlobalContext } from "../../context/Provider";
 import { REGISTER_SUCCESS } from "../../constants/actionTypes";
+import exclamationMark from "../../assets/images/exclamation-mark.png";
 
 function VerifyUI() {
   const history = useHistory();
@@ -22,20 +23,19 @@ function VerifyUI() {
     <div>
       <Header />
       <Grid centered>
-        <Grid.Column
-          style={{ maxWidth: 550, marginTop: 25, textAlign: "center" }}
-        >
+        <Grid.Column style={{ maxWidth: 550, marginTop: 25 }}>
+          <SemanticHeader>Сonfirm your account</SemanticHeader>
           <Segment>
             <Form>
-              <p style={{ fontSize: 24 }}>Сonfirm your account</p>
-              <p style={{ fontSize: 16 }}>
-                An email has been sent to your mail with a link to confirm your
-                account
-              </p>
-              <p style={{ fontSize: 16 }}>Already confirmed?</p>
-              <Link onClick={goTo} style={{ fontSize: 26 }}>
-                Login
-              </Link>
+              <p style={{ fontSize: 18, textAlign: "center" }}>Verify your email address</p>
+              <img src={exclamationMark} style={{ display: "block", maxHeight: "200px", marginLeft: "auto", marginRight: "auto", width: "150px" }} />
+              <p style={{ fontSize: 14 }}>In order to start using your P-Chat account, you need to confirm your email address.</p>
+
+              <Segment>
+                Already confirmed ? <Link onClick={goTo}>Login</Link>
+              </Segment>
+
+              <p style={{ fontSize: 12, color: "lightgray" }}>If you did not sign up for this account you can ignore this email and the account will be deleted.</p>
             </Form>
           </Segment>
         </Grid.Column>
