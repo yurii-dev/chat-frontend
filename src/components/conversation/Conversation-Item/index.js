@@ -3,10 +3,33 @@ import getMessages from "../../../context/actions/home/getMessages";
 import ReactTimeAgo from "react-time-ago";
 
 import "./ConversationItem.scss";
-const ConversationItem = ({ data: { user, textMessage, date, active, id, lastMessageOwner, lastMessageRead }, setShowMessage, setUser, messageDispatch, setEmptyMessage, checkedUserId, meId }) => {
+const ConversationItem = ({
+  data: {
+    user,
+    textMessage,
+    date,
+    active,
+    id,
+    lastMessageOwner,
+    lastMessageRead,
+  },
+  setShowMessage,
+  setUser,
+  messageDispatch,
+  setEmptyMessage,
+  checkedUserId,
+  meId,
+}) => {
   let online = new Date().getTime() - new Date(date).getTime() < 1000 * 60 * 5;
-  const isUnread = lastMessageOwner != meId && lastMessageRead == false;
-  const [unread, setUnread] = React.useState(isUnread);
+  const [unread, setUnread] = React.useState(false);
+
+  React.useEffect(() => {
+    if (lastMessageOwner != meId && lastMessageRead == false) {
+      setUnread(true);
+    } else {
+      setUnread(false);
+    }
+  }, [lastMessageOwner, lastMessageRead, meId]);
 
   return (
     <div

@@ -9,8 +9,6 @@ function ConversationSearch({
 }) {
   // --- show modal ---
   const [show, setShow] = React.useState(false);
-  // Get the modal
-  const modalRef = React.createRef(null);
 
   return (
     <div id="search-container">
@@ -18,16 +16,29 @@ function ConversationSearch({
         {data && <img src={data?.user?.avatar} onClick={() => setShow(true)} />}
         {show && (
           <div id="myModal" class="modal">
-            <div class="modal-content">
+            <div class="modal-content-wrapper">
               <span class="close" onClick={() => setShow(false)}>
                 &times;
               </span>
-              <p>Some text in the Modal..</p>
+              <div className="modal-content">
+                <img src={data?.user?.avatar} />
+                <div className="title">Username</div>
+                <div className="username">
+                  <input type="text" value="username" />
+                  <button>change</button>
+                </div>
+                <div className="title">Change password</div>
+                <form className="password-form">
+                  <input type="text" placeholder="new password" />
+                  <input type="text" placeholder="repeat password" />
+                  <button>change</button>
+                </form>
+              </div>
             </div>
           </div>
         )}
       </div>
-      <input type="text" placeholder="Search" />
+      <input className="search-input" type="text" placeholder="Search" />
     </div>
   );
 }

@@ -106,15 +106,48 @@ function ChatForm({
 
   // --- change input ---
   const onChnage = (e) => {
-    attachState.length <= 0 && setValue(e.target.value);
+    setValue(e.target.value);
   };
 
   return (
     <form id="chat-form">
-      <div title="Add Attachment"></div>
+      <div className="attachment-wrapper">
+        <div className="attachments-list">
+          {attachState.length > 0 &&
+            attachState.map((i, index) => {
+              return (
+                <div className="attachment" key={index}>
+                  <img src={i} className="attachment-image" />
+                  <span
+                    className="attachment-cross"
+                    onClick={() => deleteAttachment(i)}
+                  >
+                    x
+                  </span>
+                </div>
+              );
+            })}
+        </div>
+      </div>
+      <label htmlFor="upload-photo">
+        <input
+          style={{ display: "none" }}
+          id="upload-photo"
+          name="upload-photo"
+          type="file"
+          accept="image/*"
+          onChange={getImg}
+        />
+        <img
+          className="attachment-icon"
+          src={attachmentIcon}
+          alt="attachment"
+        />
+      </label>
+      {/* <div title="Add Attachment"></div> */}
       <input
         type="text"
-        placeholder={attachState.length > 0 ? "" : "Type a message"}
+        placeholder="Type a message"
         value={value}
         onChange={onChnage}
         onKeyDown={(e) => {
@@ -123,41 +156,8 @@ function ChatForm({
           }
         }}
       />
-      <div className="attachments-list">
-        {attachState.length > 0 &&
-          attachState.map((i, index) => {
-            return (
-              <div className="attachment-wrapper" key={index}>
-                <img src={i} className="attachment-image" />
-                <span
-                  className="attachment-cross"
-                  onClick={() => deleteAttachment(i)}
-                >
-                  x
-                </span>
-              </div>
-            );
-          })}
-      </div>
-      {value.length > 0 ? (
-        <button onClick={(e) => sendMessage(e)}>Send</button>
-      ) : (
-        <label htmlFor="upload-photo">
-          <input
-            style={{ display: "none" }}
-            id="upload-photo"
-            name="upload-photo"
-            type="file"
-            accept="image/*"
-            onChange={getImg}
-          />
-          <img
-            className="attachment-icon"
-            src={attachmentIcon}
-            alt="attachment"
-          />
-        </label>
-      )}
+
+      <button onClick={(e) => sendMessage(e)}>Send</button>
     </form>
   );
 }

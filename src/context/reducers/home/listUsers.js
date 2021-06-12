@@ -39,7 +39,7 @@ const listUsers = (state, { payload, type }) => {
     case LOGOUT_USER: {
       return {
         ...state,
-        listUsers,
+        listUsers: null,
       };
     }
     default:

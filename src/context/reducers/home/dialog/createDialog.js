@@ -40,7 +40,7 @@ const createDialog = (state, { payload, type }) => {
     case LOGOUT_USER: {
       return {
         ...state,
-        createDialog,
+        createDialog: null,
       };
     }
     default:

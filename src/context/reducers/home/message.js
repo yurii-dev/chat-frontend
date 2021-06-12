@@ -39,7 +39,7 @@ const message = (state, { payload, type }) => {
     case LOGOUT_USER: {
       return {
         ...state,
-        message,
+        message: null,
       };
     }
     default:
