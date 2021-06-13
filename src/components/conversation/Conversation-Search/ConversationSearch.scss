@@ -11,7 +11,7 @@
   z-index: 1;
 
   .account {
-    >img {
+    > img {
       grid-row: span 2;
       height: 40px;
       width: 40px;
@@ -62,9 +62,9 @@
     /* Black w/ opacity */
 
     .modal-content-wrapper {
-      width: 38.5%;
+      width: 277px;
       background-color: #fefefe;
-      margin: 17% 0.5%;
+      margin: 120px 0px 0px 4px;
       border: 1px solid #888;
     }
 
@@ -171,6 +171,5 @@
         padding: 7px;
       }
     }
-
   }
 }
