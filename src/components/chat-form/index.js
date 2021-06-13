@@ -144,7 +144,6 @@ function ChatForm({
           alt="attachment"
         />
       </label>
-      {/* <div title="Add Attachment"></div> */}
       <input
         type="text"
         placeholder="Type a message"

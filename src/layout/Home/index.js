@@ -17,6 +17,14 @@ function HomeUI({
   createDialogState,
   createDialogDispatch,
   dialogDispatch,
+  deleteAccountState,
+  deleteAccountDispatch,
+  uploadAvatarState,
+  uploadAvatarDispatch,
+  uploadUsernameState,
+  uploadUsernameDispatch,
+  uploadPasswordState,
+  uploadPasswordDispatch,
 }) {
   // --- change dialogs to find users ---
   const [showDialogs, setShowDialogs] = React.useState(true);
@@ -30,7 +38,19 @@ function HomeUI({
   return (
     <>
       <div id="chat-container">
-        <ConversationSearch {...{meState}} />
+        <ConversationSearch
+          {...{
+            meState,
+            deleteAccountState,
+            deleteAccountDispatch,
+            uploadAvatarState,
+            uploadAvatarDispatch,
+            uploadUsernameState,
+            uploadUsernameDispatch,
+            uploadPasswordState,
+            uploadPasswordDispatch,
+          }}
+        />
         <ConversationList
           {...{
             dialogState,
@@ -69,7 +89,7 @@ function HomeUI({
                 createDialogState,
                 messageDispatch,
                 dialogState,
-                setEmptyMessage
+                setEmptyMessage,
               }}
             />
           </>

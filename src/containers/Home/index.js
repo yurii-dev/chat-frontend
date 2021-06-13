@@ -18,6 +18,14 @@ function HomeContainer() {
     messageDispatch,
     createDialogState,
     createDialogDispatch,
+    deleteAccountState,
+    deleteAccountDispatch,
+    uploadAvatarState,
+    uploadAvatarDispatch,
+    uploadUsernameState,
+    uploadUsernameDispatch,
+    uploadPasswordState,
+    uploadPasswordDispatch,
   } = useContext(GlobalContext);
   const history = useHistory();
 
@@ -39,6 +47,14 @@ function HomeContainer() {
           createDialogState,
           createDialogDispatch,
           dialogDispatch,
+          deleteAccountState,
+          deleteAccountDispatch,
+          uploadAvatarState,
+          uploadAvatarDispatch,
+          uploadUsernameState,
+          uploadUsernameDispatch,
+          uploadPasswordState,
+          uploadPasswordDispatch,
         }}
       />
     </>
