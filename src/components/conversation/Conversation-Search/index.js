@@ -6,10 +6,7 @@ import uploadPasswordAction from "../../../context/actions/home/uploadPassword";
 import deleteAccountAction from "../../../context/actions/home/deleteAccount";
 import getMeAction from "../../../context/actions/home/getMe";
 import { useHistory } from "react-router-dom";
-import {
-  UPLOAD_PASSWORD_SUCCESS,
-  UPLOAD_USERNAME_SUCCESS,
-} from "../../../constants/actionTypes";
+import { UPLOAD_PASSWORD_SUCCESS, UPLOAD_USERNAME_SUCCESS } from "../../../constants/actionTypes";
 function ConversationSearch({
   meState: {
     me: { data },
@@ -131,34 +128,16 @@ function ConversationSearch({
                 &times;
               </span>
               <div className="modal-content">
-                <label
-                  htmlFor="upload-avatar"
-                  className="upload-avatar"
-                  onMouseEnter={() => setShowUpload(true)}
-                  onMouseLeave={() => setShowUpload(false)}
-                >
-                  <input
-                    style={{ display: "none" }}
-                    id="upload-avatar"
-                    name="upload-avatar"
-                    type="file"
-                    accept="image/*"
-                    onChange={getImg}
-                  />
+                <label htmlFor="upload-avatar" className="upload-avatar" onMouseEnter={() => setShowUpload(true)} onMouseLeave={() => setShowUpload(false)}>
+                  <input style={{ display: "none" }} id="upload-avatar" name="upload-avatar" type="file" accept="image/*" onChange={getImg} />
                   <img src={avatar} />
-                  {showUpload && (
-                    <button className="upload-image-btn">+</button>
-                  )}
+                  {showUpload && <button className="upload-image-btn">+</button>}
                 </label>
                 <div className="title">Username</div>
                 <div className="username">
-                  <input
-                    type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                  />
+                  <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
                   <button
-                    disabled={name.length < 4 || name === data?.user?.username}
+                    disabled={name.trim().length < 4 || name.trim() === data?.user?.username}
                     className="disabled-btn"
                     onClick={() =>
                       uploadUsernameAction({
@@ -173,57 +152,26 @@ function ConversationSearch({
                 </div>
                 <div className="title">Change password</div>
                 <form className="password-form">
-                  <input
-                    type="password"
-                    value={newPass}
-                    onChange={(e) => setNewPass(e.target.value)}
-                    placeholder="new password"
-                  />
-                  <input
-                    type="password"
-                    value={repPass}
-                    onChange={(e) => setRepPass(e.target.value)}
-                    placeholder="repeat password"
-                  />
-                  <button
-                    disabled={newPass !== repPass || newPass.length < 8}
-                    className="disabled-btn"
-                    onClick={changePassword}
-                  >
+                  <input type="password" value={newPass} onChange={(e) => setNewPass(e.target.value.trim())} placeholder="new password" />
+                  <input type="password" value={repPass} onChange={(e) => setRepPass(e.target.value.trim())} placeholder="repeat password" />
+                  <button disabled={newPass !== repPass || newPass.length < 8} className="disabled-btn" onClick={changePassword}>
                     change
                   </button>
                 </form>
                 <div className="delete-forma">
-                  <span
-                    className="delete-trigger"
-                    onClick={() => setShowDeleteForm(!showDeleteForm)}
-                  >
+                  <span className="delete-trigger" onClick={() => setShowDeleteForm(!showDeleteForm)}>
                     delete account
                   </span>
                   {showDeleteForm && (
                     <>
-                      <input
-                        type="password"
-                        value={deletePass}
-                        onChange={(e) => setDeletePass(e.target.value)}
-                        placeholder="type your password"
-                      />
-                      <label
-                        htmlFor="delete-message"
-                        className="checkbox-message"
-                      >
-                        <input
-                          id="delete-message"
-                          value={checkDelete}
-                          onChange={() => setCheckDelete(!checkDelete)}
-                          type="checkbox"
-                        />
+                      <input type="password" value={deletePass} onChange={(e) => setDeletePass(e.target.value)} placeholder="type your password" />
+                      <label htmlFor="delete-message" className="checkbox-message">
+                        <input id="delete-message" value={checkDelete} onChange={() => setCheckDelete(!checkDelete)} type="checkbox" />
                         delete all messages
                       </label>
                       <button
                         style={{
-                          background:
-                            deletePass.length < 8 ? "grey" : "rgb(184, 19, 19)",
+                          background: deletePass.length < 8 ? "grey" : "rgb(184, 19, 19)",
                         }}
                         className="delete-btn"
                         disabled={deletePass.length < 8}
