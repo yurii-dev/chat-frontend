@@ -2,16 +2,25 @@ import React, { useContext } from "react";
 import ConversationItem from "../Conversation-Item";
 import "./ConversationList.scss";
 import FindUsers from "../../conversation/FindUsers/FindUsers";
-function ConversationList({ dialogState, meState, showDialogs, listUsersState, setShowMessage, setUser, user, messageDispatch, setEmptyMessage }) {
+function ConversationList({
+  dialogState,
+  meState,
+  showDialogs,
+  listUsersState,
+  setShowMessage,
+  setUser,
+  user,
+  messageDispatch,
+  setEmptyMessage,
+}) {
   const { dialog } = dialogState;
   const { me } = meState;
   const { listUsers } = listUsersState;
 
   return (
     <div id="conversation-list">
-      {showDialogs
-        ? dialog.data &&
-          me.data &&
+      {showDialogs ? (
+        dialog.data && me.data && dialog.data.dialogs.length !== 0 ? (
           dialog.data.dialogs.map((dialog) => {
             // --- data dialog ---
             const data = {
@@ -61,19 +70,25 @@ function ConversationList({ dialogState, meState, showDialogs, listUsersState, s
               />
             );
           })
-        : listUsers.data &&
-          listUsers.data.map((l) => {
-            return (
-              <FindUsers
-                listUsers={l}
-                {...{
-                  setUser,
-                  setEmptyMessage,
-                  setShowMessage,
-                }}
-              />
-            );
-          })}
+        ) : (
+          <h4 className="not-found-users">You currently have no conversations</h4>
+        )
+      ) : listUsers.data && listUsers.data.length !== 0 ? (
+        listUsers.data.map((l) => {
+          return (
+            <FindUsers
+              listUsers={l}
+              {...{
+                setUser,
+                setEmptyMessage,
+                setShowMessage,
+              }}
+            />
+          );
+        })
+      ) : (
+        <h4 className="not-found-users">Users not found</h4>
+      )}
     </div>
   );
 }

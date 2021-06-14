@@ -22,7 +22,7 @@ const uploadAvatar = (state, { payload, type }) => {
         uploadAvatar: {
           ...state.uploadAvatar,
           loading: false,
-          data: true,
+          data: payload,
         },
       };
     }

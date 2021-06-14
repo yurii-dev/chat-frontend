@@ -22,7 +22,7 @@ const deleteAccount = (state, { payload, type }) => {
         deleteAccount: {
           ...state.deleteAccount,
           loading: false,
-          data: true,
+          data: payload,
         },
       };
     }

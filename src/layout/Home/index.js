@@ -10,6 +10,7 @@ import "./Home.scss";
 function HomeUI({
   dialogState,
   meState,
+  meDispatch,
   listUsersState,
   listUsersDispatch,
   messageState,
@@ -34,13 +35,17 @@ function HomeUI({
   const [user, setUser] = React.useState(null);
   // --- empty message -------
   const [emptyMessage, setEmptyMessage] = React.useState(false);
-
+  // --- state for input values ---
+  const [valueSearch, setValueSearch] = React.useState("");
+  // --- state for input ---
+  const [showSearch, setShowSearch] = React.useState(false);
   return (
     <>
       <div id="chat-container">
         <ConversationSearch
           {...{
             meState,
+            meDispatch,
             deleteAccountState,
             deleteAccountDispatch,
             uploadAvatarState,
@@ -69,6 +74,11 @@ function HomeUI({
             listUsersDispatch,
             setShowDialogs,
             showDialogs,
+            valueSearch,
+            setValueSearch,
+            showSearch,
+            setShowSearch,
+            setShowMessage
           }}
         />
         {showMessage ? (
@@ -90,6 +100,8 @@ function HomeUI({
                 messageDispatch,
                 dialogState,
                 setEmptyMessage,
+                setValueSearch,
+                setShowSearch,
               }}
             />
           </>

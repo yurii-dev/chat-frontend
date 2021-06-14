@@ -7,6 +7,12 @@ $speech-bubble-border-color: darken($accent-color, 13.18);
   display: flex;
   margin-bottom: 10px;
 
+  .attachment-message {
+    max-width: 200px;
+    max-height: 200px;
+    margin: 10px 0;
+  }
+
   >.message-content {
     display: grid;
     margin: 10px 5px;

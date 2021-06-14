@@ -4,40 +4,62 @@ import icon from "../../../images/back-arrow.png";
 
 import "./NewConversation.scss";
 
-const NewConversation = ({ listUsersDispatch, setShowDialogs, showDialogs }) => {
-  // --- state for input ---
-  const [show, setShow] = React.useState(false);
-  // --- state for input values ---
-  const [value, setValue] = React.useState("");
+const NewConversation = ({
+  listUsersDispatch,
+  setShowDialogs,
+  showDialogs,
+  valueSearch,
+  setValueSearch,
+  showSearch,
+  setShowSearch,
+  setShowMessage,
+}) => {
   // --- find users -----
   const findUsers = (event) => {
     if (event.keyCode === 13) {
-      getUsers(value)(listUsersDispatch);
+      getUsers(valueSearch)(listUsersDispatch);
       setShowDialogs(false);
-      setValue("");
+      setValueSearch("");
     }
   };
 
   //search method some time after the user stops typing
-  const debouncedSearchTerm = useDebounce(value, 600);
+  const debouncedSearchTerm = useDebounce(valueSearch, 600);
 
   React.useEffect(() => {
     if (debouncedSearchTerm) {
-      getUsers(value)(listUsersDispatch);
+      getUsers(valueSearch)(listUsersDispatch);
       setShowDialogs(false);
     }
   }, [debouncedSearchTerm]);
 
   return (
     <div id="new-message-container">
-      {show && <input className="filter" value={value} onChange={(e) => setValue(e.target.value)} onKeyUp={findUsers} placeholder="Type name" />}
+      {showSearch && (
+        <input
+          className="filter"
+          value={valueSearch}
+          onChange={(e) => setValueSearch(e.target.value)}
+          onKeyUp={findUsers}
+          placeholder="Type name"
+          autoFocus
+        />
+      )}
       {showDialogs ? (
-        <button onClick={() => setShow(!show)}>+</button>
+        <button
+          onClick={() => {
+            setShowMessage(false);
+            setShowSearch(!showSearch);
+            setValueSearch("");
+          }}
+        >
+          +
+        </button>
       ) : (
         <img
           onClick={() => {
             setShowDialogs(true);
-            setShow(false);
+            setShowSearch(false);
           }}
           className="back-icon"
           src={icon}

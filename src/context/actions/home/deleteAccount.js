@@ -6,12 +6,13 @@ import {
 import { CONNECTION_ERROR } from "../../../constants/api";
 import axiosInstance from "../../../helpers/axiosInstance";
 
-export default () => (dispatch) => {
+export default (data) => (dispatch) => {
   dispatch({
     type: DELETE_ACCOUNT_LOADING,
   });
+  debugger;
   axiosInstance()
-    .delete("/users/me")
+    .delete("/users/me", { data })
     .then(() => {
       dispatch({
         type: DELETE_ACCOUNT_SUCCESS,

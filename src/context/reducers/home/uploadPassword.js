@@ -22,7 +22,7 @@ const uploadPassword = (state, { payload, type }) => {
         uploadPassword: {
           ...state.uploadPassword,
           loading: false,
-          data: true,
+          data: payload,
         },
       };
     }

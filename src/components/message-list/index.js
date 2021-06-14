@@ -30,6 +30,7 @@ function MessageList({ messageState: { message }, meState: { me } }) {
               text={m.text}
               date={m.createdAt}
               avatar={avatar}
+              attachments={m.attachments}
             />
           );
         })}

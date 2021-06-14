@@ -13,6 +13,8 @@ function ChatForm({
   messageDispatch,
   dialogState,
   setEmptyMessage,
+  setValueSearch,
+  setShowSearch,
 }) {
   // --- get createDialog ---
   const { createDialog } = createDialogState;
@@ -29,12 +31,15 @@ function ChatForm({
         message: {
           partnerId: user.id ? user.id : user._id,
           text: value,
-          attachments: null,
+          attachments: attachState,
         },
       },
       dialogDispatch,
     })(createDialogDispatch);
     setValue("");
+    setValueSearch("");
+    setShowSearch(false);
+    setAttachState([]);
   };
 
   // --- check data ---
@@ -137,6 +142,7 @@ function ChatForm({
           type="file"
           accept="image/*"
           onChange={getImg}
+          disabled={attachState.length > 4}
         />
         <img
           className="attachment-icon"

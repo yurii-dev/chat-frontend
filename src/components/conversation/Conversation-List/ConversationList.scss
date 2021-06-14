@@ -4,4 +4,11 @@
     grid-area: conversation-list;
     background: $primary-color;
     overflow-y: scroll;
+
+    .not-found-users {
+        color: #fff;
+        font-size: 20px;
+        text-align: center;
+        margin-top: 30px;
+    }
 }

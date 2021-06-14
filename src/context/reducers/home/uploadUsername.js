@@ -22,7 +22,7 @@ const uploadUsername = (state, { payload, type }) => {
         uploadUsername: {
           ...state.uploadUsername,
           loading: false,
-          data: true,
+          data: payload,
         },
       };
     }

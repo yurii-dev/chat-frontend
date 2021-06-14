@@ -1,20 +1,25 @@
 import React from "react";
 import "./ConversationSearch.scss";
 import uploadAvatar from "../../../context/actions/home/uploadAvatar";
-import uploadUsername from "../../../context/actions/home/uploadUsername";
+import uploadUsernameAction from "../../../context/actions/home/uploadUsername";
 import uploadPasswordAction from "../../../context/actions/home/uploadPassword";
 import deleteAccountAction from "../../../context/actions/home/deleteAccount";
+import getMeAction from "../../../context/actions/home/getMe";
 import { useHistory } from "react-router-dom";
-import { UPLOAD_PASSWORD_SUCCESS } from "../../../constants/actionTypes";
+import {
+  UPLOAD_PASSWORD_SUCCESS,
+  UPLOAD_USERNAME_SUCCESS,
+} from "../../../constants/actionTypes";
 function ConversationSearch({
   meState: {
     me: { data },
   },
+  meDispatch,
   deleteAccountState: { deleteAccount },
   deleteAccountDispatch,
   uploadAvatarState,
   uploadAvatarDispatch,
-  uploadUsernameState,
+  uploadUsernameState: { uploadUsername },
   uploadUsernameDispatch,
   uploadPasswordState: { uploadPassword },
   uploadPasswordDispatch,
@@ -24,12 +29,17 @@ function ConversationSearch({
   const [name, setName] = React.useState("");
   const [newPass, setNewPass] = React.useState("");
   const [repPass, setRepPass] = React.useState("");
+  const [deletePass, setDeletePass] = React.useState("");
   // --- show modal ---
   const [show, setShow] = React.useState(false);
   // --- show upload btn ---
   const [showUpload, setShowUpload] = React.useState(false);
   // --- set avatar ---
   const [avatar, setAvatar] = React.useState("");
+  // --- show delete form ---
+  const [showDeleteForm, setShowDeleteForm] = React.useState(false);
+  // --- check delete message ---
+  const [checkDelete, setCheckDelete] = React.useState(false);
 
   // --- set username ---
   React.useEffect(() => {
@@ -41,19 +51,11 @@ function ConversationSearch({
   // --- change password ---
   const changePassword = (e) => {
     e.preventDefault();
-    if (newPass === repPass) {
-      if (newPass.length < 8) {
-        alert("minimum 8 characters");
-      } else {
-        uploadPasswordAction({
-          user: {
-            password: repPass,
-          },
-        })(uploadPasswordDispatch);
-      }
-    } else {
-      alert("passwords not seems");
-    }
+    uploadPasswordAction({
+      user: {
+        password: repPass,
+      },
+    })(uploadPasswordDispatch);
   };
 
   React.useEffect(() => {
@@ -61,12 +63,23 @@ function ConversationSearch({
       alert("your password changed :)");
       setNewPass("");
       setRepPass("");
-      // uploadPasswordDispatch({
-      //   type: UPLOAD_PASSWORD_SUCCESS,
-      //   payload: false,
-      // });
+      uploadPasswordDispatch({
+        type: UPLOAD_PASSWORD_SUCCESS,
+        payload: false,
+      });
     }
   }, [uploadPassword.data]);
+
+  React.useEffect(() => {
+    if (uploadUsername.data === true) {
+      alert("your name changed :)");
+      getMeAction()(meDispatch);
+      uploadUsernameDispatch({
+        type: UPLOAD_USERNAME_SUCCESS,
+        payload: false,
+      });
+    }
+  }, [uploadUsername.data]);
 
   // ------------- upload img from pc --------------
   const getImg = async (e) => {
@@ -145,8 +158,10 @@ function ConversationSearch({
                     onChange={(e) => setName(e.target.value)}
                   />
                   <button
+                    disabled={name.length < 4 || name === data?.user?.username}
+                    className="disabled-btn"
                     onClick={() =>
-                      uploadUsername({
+                      uploadUsernameAction({
                         user: {
                           username: name,
                         },
@@ -170,14 +185,60 @@ function ConversationSearch({
                     onChange={(e) => setRepPass(e.target.value)}
                     placeholder="repeat password"
                   />
-                  <button onClick={changePassword}>change</button>
+                  <button
+                    disabled={newPass !== repPass || newPass.length < 8}
+                    className="disabled-btn"
+                    onClick={changePassword}
+                  >
+                    change
+                  </button>
                 </form>
-                <button
-                  className="btn-remove"
-                  onClick={() => deleteAccountAction()(deleteAccountDispatch)}
-                >
-                  delete account
-                </button>
+                <div className="delete-forma">
+                  <span
+                    className="delete-trigger"
+                    onClick={() => setShowDeleteForm(!showDeleteForm)}
+                  >
+                    delete account
+                  </span>
+                  {showDeleteForm && (
+                    <>
+                      <input
+                        type="password"
+                        value={deletePass}
+                        onChange={(e) => setDeletePass(e.target.value)}
+                        placeholder="type your password"
+                      />
+                      <label
+                        htmlFor="delete-message"
+                        className="checkbox-message"
+                      >
+                        <input
+                          id="delete-message"
+                          value={checkDelete}
+                          onChange={() => setCheckDelete(!checkDelete)}
+                          type="checkbox"
+                        />
+                        delete all messages
+                      </label>
+                      <button
+                        style={{
+                          background:
+                            deletePass.length < 8 ? "grey" : "rgb(184, 19, 19)",
+                        }}
+                        className="delete-btn"
+                        disabled={deletePass.length < 8}
+                        onClick={() =>
+                          deleteAccountAction({
+                            password: deletePass,
+                            removeMessagess: checkDelete,
+                          })(deleteAccountDispatch)
+                        }
+                      >
+                        delete
+                      </button>
+                    </>
+                  )}
+                </div>
               </div>
             </div>
           </div>
