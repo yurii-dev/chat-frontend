@@ -1,8 +1,4 @@
-import {
-  DELETE_ACCOUNT_LOADING,
-  DELETE_ACCOUNT_SUCCESS,
-  DELETE_ACCOUNT_ERROR,
-} from "../../../constants/actionTypes";
+import { DELETE_ACCOUNT_LOADING, DELETE_ACCOUNT_SUCCESS, DELETE_ACCOUNT_ERROR } from "../../../constants/actionTypes";
 import { CONNECTION_ERROR } from "../../../constants/api";
 import axiosInstance from "../../../helpers/axiosInstance";
 
@@ -10,7 +6,6 @@ export default (data) => (dispatch) => {
   dispatch({
     type: DELETE_ACCOUNT_LOADING,
   });
-  debugger;
   axiosInstance()
     .delete("/users/me", { data })
     .then(() => {

@@ -69,7 +69,7 @@ function ConversationSearch({
 
   React.useEffect(() => {
     if (uploadUsername.data === true) {
-      alert("your name changed :)");
+      alert("your name has changed");
       getMeAction()(meDispatch);
       uploadUsernameDispatch({
         type: UPLOAD_USERNAME_SUCCESS,
@@ -116,6 +116,13 @@ function ConversationSearch({
       history.push("/login");
     }
   }, [deleteAccount.data]);
+
+  React.useEffect(() => {
+    if (deleteAccount?.error?.message) {
+      setDeletePass("");
+      alert("Wrong password");
+    }
+  }, [deleteAccount?.error]);
 
   return (
     <div id="search-container">
